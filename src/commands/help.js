@@ -16,7 +16,8 @@ module.exports =
 		const data = [];
 		const {commands} = message.client;
 
-		const categories = Array.from(new Set(commands.map(command => command.category))).sort();
+		var categories = Array.from(new Set(commands.map(command => command.category))).sort();
+		categories = categories.filter((cat) => cat != "Dev");
 
 		var embed = new Discord.RichEmbed();
 
@@ -25,7 +26,7 @@ module.exports =
 			// Single command
 			const command = commands.get(args[0].toLowerCase()) || commands.find(c => c.aliases && c.aliases.includes(args[0].toLowerCase()));
 
-			if (!command)
+			if (!command || command.devOnly)
 			{
 				return await message.channel.send("That is not a command!");
 			}

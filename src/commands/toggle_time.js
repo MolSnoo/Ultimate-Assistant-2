@@ -5,7 +5,7 @@ module.exports =
 {
 	name: 'toggle_time', 
 	aliases: ['toggletime', 'toggle_announcements', 'toggleannouncements'], 
-	description: 'Mute or unmute announcements', 
+	description: 'Mute or unmute announcements. Time will still technically move forward, but your announcements will not post until you toggle them back on', 
 	usage: ' ', // keep as a space if none. Otherwise, the convention is <"req_arg"> ["opt_arg"], quotations if necessary
 	category: 'Admin', 
 	// args:
