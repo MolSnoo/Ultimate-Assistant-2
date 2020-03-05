@@ -1,7 +1,0 @@
-node_modules
-package.json
-package-lock.json
-src/discord-config.json
-src/master.db
-src/commands/dev.js
-src/db_fix.js
