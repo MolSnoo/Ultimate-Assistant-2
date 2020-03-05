@@ -43,82 +43,82 @@ Embed Links
 
 # Version Updates <a name="updates"></a>
 
-## **One small drawback**
+### **One small drawback**
 discord.js bots do not seem to have the same custom emoji capabilities as discord.py. You can still use server emotes but emotes from other servers have not been working during testing
 
-## **Revamped help command**
+### **Revamped help command**
 Using `!help <command-name>` displays example uses. Overall easier to read
 
-## **Small QoL things**
+### **Small QoL things**
 Use the `!info` command to get an overview of required perms and documentation/invite links. 
 
-## **Feedback command and DM replies**
+### **Feedback command and DM replies**
 This existed before, but the bot won't be sending automatic error reports anymore. If you have any questions/comments/critiques and you don't want to send them in the dev server, you may send it semi-anonymously to me with the `!feedback` command. I will do my best to reply, though you must be accepting DMs from the bot
 
-## **Anon DMs now *require* receipt channels**
+### **Anon DMs now *require* receipt channels**
 This was a popular request to begin with, and I can bring back the old way of DMing every admin of the server if there is a lot of demand for it. However, anon dms now require the set up of a receipt channel. You can do this with `!set_adm_channel #channel-tag`. If there is no channel to send to (or it doesn't have posting perms in that channel), anon dms will not work, and you will not be able to toggle them to ON
 
-## **Add mod roles**
+### **Add mod roles**
 Members with any of those roles can use the admin commands. Check the `!help Admin` for full details
 
-## **No need to ping the role to set an auto-role**
+### **No need to ping the role to set an auto-role**
 You can make a typo or two and still be alright
 
-## **Default timeout for responses has been extended to 120 seconds**
+### **Default timeout for responses has been extended to 120 seconds**
 
-## **Easily take or drop more than one of an item at once**
+### **Easily take or drop more than one of an item at once**
 Check the `!help take/drop` command for details. Inventories are limited to 9999 of a single item
 
-## **Character info is now completely customizable** 
+### **Character info is now completely customizable** 
 From height to birthday to intelligence level. Do you prefer SHSL over Ultimate? Are talents fake? Add it. Really need the ever important chest size info on your character card? It's one command away. Add/remove up to 20 custom fields to any character. This has also replaced the old stats system that was hastily thrown together in 4 hours. Note: these will be cast to `Title Case` when you make them.
 
-## **Streamlined character setup**
+### **Streamlined character setup**
 The `!new_char` command has been reduced to one command and one confirmation input. The new call is `!nc <char_nickname> <char_player> <Full Char Name>`. **You also do not need to ping the player in question anymore**, just their username will do. This may cause an issue if two users have the exact same username, as it does not check nicknames.
 
-## **Edit your own character**
+### **Edit your own character**
 Another commonly requested feature. Edit the profile for any character assigned to you
 
-## **Streamlined map setup**
+### **Streamlined map setup**
 As before, add a new channel with `!new_area_role` (alias `!nm`). Adding connections to it is now reduced to one command with an optional argument to specify one or two way connections from source to connection.
 
-## **Command to remove map channels**
+### **Command to remove map channels**
 It exists now. Use `!rmc #channel-tag1 #channel-tag2...`. It will still delete if you delete the associated role ir channel.
 
-## **!go is a little easier to use now**
+### **!go is a little easier to use now**
 Enter either the channel name or tag it to go to a connected channel. The bot will find the closest server channel that matches the name you enter, so you can make a typo or two. There shouldn't be any weird scenarios where you need quotation marks either
 
-## **`!ainventory` is gone**
+### **`!ainventory` is gone**
 Admins and mods can add the character nickname as an argument to the normal `!items` command to see any character's inventory. Players leave the nickname off to see their own inventory
 
-## **Gift items and currency to other players**
+### **Gift items and currency to other players**
 Another commonly requested feature. Transfer items from your inventory to another character, or specify the server's currency see `!gift` for detailed instructions
 
-## **The admin command to see money is also gone**
+### **The admin command to see money is also gone**
 Same as above, admins can append the nickname to the normal `!money` command
 
-## **Investigation set-up streamlined + public/private option + steal option**
+### **Investigation set-up streamlined + public/private option + steal option**
 The investigation set up has been reduced to one command and a description entry. You may also flag it as stealable or public. Stealable items can be stolen with the `!steal <item>` command. Public items will be delivered to the same channel as the command. Otherwise the bot will try to DM the player
 
-## **Remote investigation performed in normal command**
+### **Remote investigation performed in normal command**
 Add the channel tag to the normal `!investigate [#channel-tag] <item>` command to investigate from outside that channel. Leave it out and the bot will use the posting channel. This will also work for the `!steal` command.
 
-## **Silence your announcements**
+### **Silence your announcements**
 If you need to 'stop' time for an event or trial, it's now possible without deleting all your time announcements. They'll pick right back up on schedule when you resume them. Note, this doesn't exactly freeze time. Your announcements just won't post in order to keep up with the task scheduler
 
-## **Paste in an image for a ref**
+### **Paste in an image for a ref**
 A famously common issue in the previous version. You may now paste an image into discord when adding a ref to a profile/gacha item if you don't have the link. The bot will throw you an error message if the ref isn't a proper url to a .png/.jpg/.gif.
 
-## **Gacha updates**
+### **Gacha updates**
 It is now a single command to add in a new gacha item. You may also paste in a reference image as above. See the help command for the full syntax
 **Also**, you may now make items **limited** by specifying how many to put in the gacha. By default, you may leave the amount argument blank and the item will be infinitely available to draw. To change this amount for an existing item, use `!ia <new-amount> <item-name>`
 
-## **Custom rolls can now be called with the usual !roll command**
+### **Custom rolls can now be called with the usual !roll command**
 No need to remember !rc or !rcs or whatever it was
 
-## **Pay in bulk and then some**
+### **Pay in bulk and then some**
 What it says. Pay everyone at once with `!payall`. Great for starting everyone off with a few gacha coins. If you just want to pay one or a few characters, list every nickname in the normal `!pay` command. You can also specify how much you want to pay now at the end of the command (leave it blank to default to 1)
 
-## **Dice Roll QoL tweaks** 
+### **Dice Roll QoL tweaks** 
 The rolls are not colored anymore, but they can be easily if there is demand. They also will not self delete anymore, and will default to the caller's nickname if they have one. They should also be a little more efficient now
 
 # Command Overview <a name="commands"></a>
