@@ -204,8 +204,8 @@ bot.on('message', async message =>
 				error_msg += `**GuildID**: ${message.guild.id}\n`;
 				error_msg += `**ChannelID**: ${message.channel.id}\n`;
 				error_msg += `**UserID**: ${message.author.id}\n`;
-				error_msg += `${error.name}: ${error.message}`;
-
+				error_msg += `${error.name}: ${error.message}\n`;
+				error_msg += `${error}`;
 				let owner = bot.fetchUser(devID)
 				.then ((owner) =>
 				{
