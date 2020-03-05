@@ -27,7 +27,7 @@ module.exports =
 			.addField("Add these perms to my highest role to allow full functionality", "Read Messages\nRead Message History\nSend Messages\nManage Roles\nManage Channels\nManage Members")
 			.addField("Bot Invite", "https://discordapp.com/oauth2/authorize?client_id=517165856933937153&scope=bot")
 			.addField("Development Server", "https://discord.gg/UzeYk99")
-			.addField("Github Page", "https://github.com/ecatherine13/Ultimate-Assistant")
+			.addField("Github Page", "https://github.com/ecatherine13/Ultimate-Assistant-2")
 			.addField("No. Servers", bot.guilds.size)
 			.addField("No. Unique Users", all_users.size)
 
