@@ -277,7 +277,7 @@ README.md
 ```
 {
 	"prefix": "!", // Or any prefix you like 
-	"token": "<your-bot-token", 
+	"token": "<your-bot-token>", 
 	"devID": "<your-user-snowflake-id>"
 }
 ```

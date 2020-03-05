@@ -185,19 +185,35 @@ bot.on('message', async message =>
 	}
 	catch (error)
 	{
-		console.log("Here-Execute");
-		console.log(error);
+		// console.log("Here-Execute");
+		// console.log(error);
 		try
 		{
 			await message.channel.send(error);
 		}
 		catch
 		{
-			console.log("ExecuteMessageError");
-			console.log(`${error.name}: ${error.message}`);
-			console.log(error);
+			// console.log("ExecuteMessageError");
+			// console.log(`${error.name}: ${error.message}`);
+			// console.log(error);
 
 			// DM Developer
+			try
+			{
+				let error_msg = "";
+				error_msg += `**GuildID**: ${message.guild.id}\n`;
+				error_msg += `**ChannelID**: ${message.channel.id}\n`;
+				error_msg += `**UserID**: ${message.author.id}\n`;
+				error_msg += `${error.name}: ${error.message}`;
+
+				let owner = bot.fetchUser(devID)
+				.then ((owner) =>
+				{
+					owner.send(`${error_msg}\n--------------------------------------------`.slice(0, 1900));
+				});
+			}
+			catch (e)
+			{}
 		}
 	}
 });
