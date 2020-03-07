@@ -89,7 +89,7 @@ bot.on('message', async message =>
 
 	const commandName = args_str.shift().toLowerCase();
 
-	var args = args_str.input.match(/"[^"]+"|'[^']+'|\S+/g);
+	var args = args_str.input.match(/"[^"]+"|(?:\w+(?:'\w+)*|'\w+'(?: \w+')*)/g);
 	args = args.slice(1).map(e => e.replace(/^[\"']|[\"']$/g, ""));
 
 	// Check if it's a command name or alias

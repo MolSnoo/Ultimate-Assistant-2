@@ -7,7 +7,7 @@ module.exports =
 	aliases: [], 
 	description: 'Add one or more of an item to your inventory. Be wary of apostrophes in your description (enclose in "" if needed)', 
 	usage: '[amount] <item-name> [description]', 
-	examples: ["!take 'Library book' A book about ancient languages", '!take 4 note ', "!take 4 note  Four lists of names"], 
+	examples: ["!take 'Library book' A book about ancient languages", '!take 4 note', "!take 4 note  Four lists of names"], 
 	category: 'Inventory', 
 	args: 1, 
 	guildOnly: true,

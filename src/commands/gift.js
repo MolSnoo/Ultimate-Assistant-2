@@ -70,9 +70,9 @@ module.exports =
 		let item_entry = giver_inventory[item_name];
 		
 		// Check amount
-		if (item_entry.num < amount)
+		if (item_entry.amnt < amount)
 		{
-			throw `You are short ${amount-item_entry.num} of ${item_name}!`;
+			throw `You are short ${amount-item_entry.amnt} of ${item_name}!`;
 		}
 
 		// Give recipient the item (fails if they don't exist)

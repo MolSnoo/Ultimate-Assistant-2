@@ -89,7 +89,6 @@ exports.fn =
 					{
 						var title = item_name;
 					}
-					console.log(title);
 					if (!item_entry.desc)
 					{
 						item_entry.desc = "No desc";

@@ -511,19 +511,19 @@ exports.fn =
 		// check if the item already exists (case insensitive bc of title case conversion
 		if (inventory[item_name])
 		{
-			if (item_amount + inventory[item_name].num > 9999)
+			if (item_amount + inventory[item_name].amnt > 9999)
 			{
-				inventory[item_name].num = 9999;
+				inventory[item_name].amnt = 9999;
 			}
 			else
 			{
-				inventory[item_name].num = item_amount + inventory[item_name].num;
+				inventory[item_name].amnd = item_amount + inventory[item_name].amnt;
 			}
 		}
 		else
 		{
 			inventory[item_name] = {};
-			inventory[item_name].num = item_amount;
+			inventory[item_name].amnt = item_amount;
 			inventory[item_name].desc = item_desc;
 		}
 
@@ -561,14 +561,14 @@ exports.fn =
 		// replace
 		if (inventory[item_name])
 		{
-			let old_amount = inventory[item_name].num;
+			let old_amount = inventory[item_name].amnt;
 			if (old_amount - item_amount <= 0)
 			{
 				delete inventory[item_name];
 			}
 			else
 			{
-				inventory[item_name].num = old_amount - item_amount;
+				inventory[item_name].amnt = old_amount - item_amount;
 			}
 		}
 		else
