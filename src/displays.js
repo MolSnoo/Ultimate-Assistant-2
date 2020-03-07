@@ -81,18 +81,22 @@ exports.fn =
 				try
 				{
 					// Title
-					if (item_entry.num > 1)
+					if (item_entry.amnt > 1)
 					{
-						var title = `${item_name} (${item_entry.num})`;
+						var title = `${item_name} (${item_entry.amnt})`;
 					}
 					else
 					{
 						var title = item_name;
 					}
-
+					console.log(title);
+					if (!item_entry.desc)
+					{
+						item_entry.desc = "No desc";
+					}
 					embeds[i].addField(title.slice(0, 50), item_entry.desc.slice(0, 275))
 				}
-				catch (e)
+				catch
 				{
 					break;
 				}

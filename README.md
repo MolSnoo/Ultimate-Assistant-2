@@ -251,7 +251,7 @@ This bot was written and tested on Ubuntu 16.04 LTS with Node using Discord.js. 
 https://nodejs.org/en/
 
 2. Add the dependencies for the bot
-`npm install better-sqlite3 date-and-time discord.js@11.5.1 node-cron`
+`npm install better-sqlite3 date-and-time discord.js@11.5.1 node-cron string-argv`
 
 3. Clone or otherwise extract the contents of this repository into your project folder. The directory structure should look like:
 

@@ -6,7 +6,8 @@ var utils = require('./utils.js');
 const fs = require('fs');
 const Discord = require('discord.js');
 const cron = require('node-cron');
-const announcement_loop = require('./announcement_loop.js')
+const announcement_loop = require('./announcement_loop.js');
+// var {parseArgsStrToArgv } =  require('string-argv');
 
 // Discord config
 const {default_prefix, token, devID} = require("./discord-config.json")
@@ -82,9 +83,14 @@ bot.on('message', async message =>
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	// Parse for command name and args
-	const args = message.content.slice(prefix.length).match(/[^\s"']+|"([^"]*)"|'([^']*)'/g).map(element => element.replace(/^[\"']|[\"']$/g, ""));
+	// const args = message.content.slice(prefix.length).match(/[^\s"']+|"([^"]*)"|'([^']*)'/g).map(element => element.replace(/^[\"']|[\"']$/g, ""));
 
-	const commandName = args.shift().toLowerCase();
+	const args_str = message.content.slice(prefix.length).match(/\w+/);
+
+	const commandName = args_str.shift().toLowerCase();
+
+	var args = args_str.input.match(/"[^"]+"|'[^']+'|\S+/g);
+	args = args.slice(1).map(e => e.replace(/^[\"']|[\"']$/g, ""));
 
 	// Check if it's a command name or alias
 	const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.aliases.includes(commandName));

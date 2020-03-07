@@ -6,3 +6,5 @@ src/master.db
 src/commands/dev.js
 src/db_fix.js
 src/master-test.db
+db_archive
+src/commands/dev.js
