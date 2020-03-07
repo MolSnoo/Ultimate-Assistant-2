@@ -29,9 +29,9 @@ module.exports =
 			var item_desc = args.slice(2).join(" ");
 		}
 
-		console.log(item_name);
-		console.log(item_amnt);
-		console.log(item_desc);
+		// console.log(item_name);
+		// console.log(item_amnt);
+		// console.log(item_desc);
 
 		utils.fn.add_item_to_inventory(message.guild.id, char_nickname, item_name, item_amnt, item_desc);
 

@@ -517,7 +517,7 @@ exports.fn =
 			}
 			else
 			{
-				inventory[item_name].amnd = item_amount + inventory[item_name].amnt;
+				inventory[item_name].amnt = item_amount + inventory[item_name].amnt;
 			}
 		}
 		else
