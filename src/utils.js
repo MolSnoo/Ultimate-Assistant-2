@@ -269,7 +269,7 @@ exports.fn =
 
 		del = db.prepare(sql).get(guild_id, char_nickname);
 
-		if (del.UserID)
+		if (del && del.UserID)
 		{
 			sql = `DELETE FROM UserData WHERE GuildID = ? AND PlayingAs = ? COLLATE NOCASE LIMIT 1`;
 			db.prepare(sql).run(guild_id, char_nickname);
@@ -559,12 +559,13 @@ exports.fn =
 		}
 
 		// replace
-		if (inventory[item_name])
+		if (inventory[Object.keys(inventory).find(key => this.fn.to_title_case(key) == item_name)])
 		{
-			let old_amount = inventory[item_name].amnt;
+			
+			let old_amount = inventory[Object.keys(inventory).find(key => this.fn.to_title_case(key) == item_name)].amnt;
 			if (old_amount - item_amount <= 0)
 			{
-				delete inventory[item_name];
+				delete inventory[Object.keys(inventory).find(key => this.fn.to_title_case(key) == item_name)];
 			}
 			else
 			{

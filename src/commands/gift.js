@@ -62,12 +62,12 @@ module.exports =
 		let giver_inventory = giver_entry.Inventory;
 
 		// Check existence
-		if (!Object.keys(giver_inventory).includes(item_name))
+		if (!Object.keys(giver_inventory).map(key => utils.fn.to_title_case(key)).includes(item_name))
 		{
 			throw `You do not have ${item_name} in your inventory!`;
 		}
 
-		let item_entry = giver_inventory[item_name];
+		let item_entry = giver_inventory[Object.keys(giver_inventory).find(key => utils.fn.to_title_case(key) == item_name)];
 		
 		// Check amount
 		if (item_entry.amnt < amount)

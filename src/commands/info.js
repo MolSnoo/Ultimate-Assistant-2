@@ -30,6 +30,7 @@ module.exports =
 			.addField("Github Page", "https://github.com/ecatherine13/Ultimate-Assistant-2")
 			.addField("No. Servers", bot.guilds.size)
 			.addField("No. Unique Users", all_users.size)
+			.setFooter("UA is developed by @Firefly#7113. Special thank you to Vash#0007 for debugging help!");
 
 		return await message.channel.send(embed);
 	}
