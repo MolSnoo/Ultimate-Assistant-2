@@ -1,7 +1,7 @@
 // FINISHED
 const utils = require('../utils.js');
 const displays = require('../displays.js');
-const utf8 = require('utf8');
+// const utf8 = require('utf8');
 
 module.exports = 
 {
@@ -43,14 +43,7 @@ module.exports =
 						{
 							let i = parseInt(idx);
 
-							try
-							{
-								utils.fn.remove_investigation(ordered_list[i].ChannelID, ordered_list[i].ItemNames[0]);
-							}
-							catch // utf-8 error
-							{
-								utils.fn.remove_investigation(ordered_list[i].ChannelID, utf8.decode(ordered_list[i].ItemNames[0]));
-							}
+							utils.fn.remove_investigation(ordered_list[i].ChannelID, ordered_list[i].ItemNames[0]);
 						}
 
 						// Finish
