@@ -1,6 +1,7 @@
 // FINISHED
 const utils = require('../utils.js');
 const displays = require('../displays.js');
+const utf8 = require('utf8');
 
 module.exports = 
 {
@@ -41,7 +42,15 @@ module.exports =
 						for (idx of idxs_to_delete)
 						{
 							let i = parseInt(idx);
-							utils.fn.remove_investigation(ordered_list[i].ChannelID, ordered_list[i].ItemNames[0]);
+
+							try
+							{
+								utils.fn.remove_investigation(ordered_list[i].ChannelID, ordered_list[i].ItemNames[0]);
+							}
+							catch // utf-8 error
+							{
+								utils.fn.remove_investigation(ordered_list[i].ChannelID, utf8.decode(ordered_list[i].ItemNames[0]));
+							}
 						}
 
 						// Finish
@@ -53,6 +62,7 @@ module.exports =
 					})
 					.catch (collected =>
 					{
+						console.log(collected);
 						message.channel.send(`Timed out! (120 s)`);
 					});
 			});

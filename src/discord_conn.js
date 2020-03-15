@@ -7,7 +7,6 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const cron = require('node-cron');
 const announcement_loop = require('./announcement_loop.js');
-const {parse_args} =  require('string-argv');
 
 // Discord config
 const {default_prefix, token, devID} = require("./discord-config.json")

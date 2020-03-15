@@ -36,6 +36,7 @@ module.exports =
 			{
 				await user.send(msg);
 				await message.channel.send("Sent feedback");
+				await message.channel.send(msg);
 			});
 		}
 		catch (e)

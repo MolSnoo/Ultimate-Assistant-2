@@ -569,7 +569,7 @@ exports.fn =
 			}
 			else
 			{
-				inventory[item_name].amnt = old_amount - item_amount;
+				inventory[Object.keys(inventory).find(key => this.fn.to_title_case(key) == item_name)].amnt = old_amount - item_amount;
 			}
 		}
 		else
