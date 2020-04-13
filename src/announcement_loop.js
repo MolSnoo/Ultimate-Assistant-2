@@ -23,7 +23,7 @@ exports.fn =
 				}
 				catch (e)
 				{
-					// Channel cannot be sent to either because it's been deleted or doesn't have correct perms
+					utils.fn.remove_announcement(announcement.GuildID, announcement.ChannelID, announcement.Message, announcement.Frequency, announcement.NextPosting);
 				}
 			}
 		}
