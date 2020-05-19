@@ -171,9 +171,14 @@ bot.on('message', async message =>
 	// cooldown TODO
 
 	// If it's the prefix command, add it to the map
+	// Not the most efficient way of checking but it works
 	if (command.name == 'prefix')
 	{
-		prefix_map.set(message.guild.id, args[0]);
+		let regex = /^[0-9A-Za-z]+$|^[(>]+|.*[*~_]+.*/;
+		if (args[0].match(regex) == null)
+		{
+			prefix_map.set(message.guild.id, args[0]);
+		}
 	}
 
 	try
