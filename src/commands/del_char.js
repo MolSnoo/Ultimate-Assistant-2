@@ -7,7 +7,7 @@ module.exports =
 	description: 'Remove a character from the server', 
 	usage: '<char-nickname>',
 	examples: ["!rc yui"],  
-	category: 'Admin', 
+	category: 'Characters', 
 	args: 1, 
 	adminOnly: true, 
 	guildOnly: true,

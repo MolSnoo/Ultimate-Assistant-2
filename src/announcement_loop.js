@@ -10,10 +10,17 @@ exports.fn =
 		for (announcement of current_announcements)
 		{
 			// Send to guildID/channelID the message
-			let channel = bot.channels.get(announcement.ChannelID);
+			try
+			{
+				let channel = bot.channels.get(announcement.ChannelID);
 
-			// Check for time pause in guild
-			let guild_info = utils.fn.get_guild_entry(channel.guild.id);
+				// Check for time pause in guild
+				let guild_info = utils.fn.get_guild_entry(channel.guild.id);
+			}
+			catch
+			{
+				utils.fn.remove_announcement(announcement.GuildID, announcement.ChannelID, announcement.Message, announcement.Frequency, announcement.NextPosting);
+			}
 
 			if (guild_info.Timeflow == 1)
 			{
@@ -21,7 +28,7 @@ exports.fn =
 				{
 					await channel.send(announcement.Message);
 				}
-				catch (e)
+				catch 
 				{
 					utils.fn.remove_announcement(announcement.GuildID, announcement.ChannelID, announcement.Message, announcement.Frequency, announcement.NextPosting);
 				}
