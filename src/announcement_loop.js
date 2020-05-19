@@ -12,10 +12,10 @@ exports.fn =
 			// Send to guildID/channelID the message
 			try
 			{
-				let channel = bot.channels.get(announcement.ChannelID);
+				const channel = bot.channels.get(announcement.ChannelID);
 
 				// Check for time pause in guild
-				let guild_info = utils.fn.get_guild_entry(channel.guild.id);
+				const guild_info = utils.fn.get_guild_entry(channel.guild.id);
 			}
 			catch
 			{
