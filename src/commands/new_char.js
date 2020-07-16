@@ -5,18 +5,28 @@ module.exports =
 {
 	name: 'new_char', 
 	aliases: ['newchar', 'nc'], 
-	description: 'Assign a new character to a player', 
+	description: 'Assign a new character to a player. You may either ping the player or enter their full username (do not use server nicknames).', 
 	usage: '<char-nickname> <player-username> <char name>', 
-	examples: ["!nc yui Firefly Yui Yamashita", "!nc yui 'name with spaces' Yui Yamashita"], 
+	examples: ["!nc yui Firefly Yui Yamashita", "!nc yui 'username with spaces' Yui Yamashita", "!nc yui `@Firefly` Yui Yamashita"], 
 	category: 'Characters', 
 	args: 3, 
 	adminOnly: true, 
 	guildOnly: true,
 	execute: async (message, args) =>
 	{
-		// Get closest match to user
-		let player_obj = utils.fn.get_closest_member_match(message.guild, args[1]);
-		var player_id = player_obj.id;
+		// Allow a user ping or a username
+		let player_id_match = args[1].match(/^<@!?([0-9]*)>$/);
+		if (player_id_match)
+		{
+			var player_id = player_id_match[1];
+			var player_obj = message.guild.members.find((member) => member.user.id == player_id).user;
+		}
+		else
+		{
+			// Get closest match to user
+			var player_obj = utils.fn.get_closest_member_match(message.guild, args[1]);
+			var player_id = player_obj.id;
+		}
 
 		// Parse nickname and check that it's not a repeat (because the error throwing does not seem to work from the database calling functions in async)
 		var char_nickname = args[0];

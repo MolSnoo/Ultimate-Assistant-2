@@ -33,7 +33,7 @@ module.exports =
 					
 					if (!is_char_player)
 					{
-						throw`You do not have permission to view inventory for ${char_nickname}!`;
+						throw `You do not have permission to view inventory for ${char_nickname}!`;
 					}
 				}
 			}
@@ -46,6 +46,11 @@ module.exports =
 
 		var char_entry = utils.fn.get_char_entry(message.guild.id, char_nickname);
 		var embeds = displays.fn.inventory_embeds(char_entry);
+
+		if (embeds.length == 0)
+		{
+			throw `${char_nickname} has an empty inventory!`;
+		}
 
 		for (embed of embeds)
 		{

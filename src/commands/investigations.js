@@ -19,7 +19,7 @@ module.exports =
 			{
 				var channel_id = args[0].match(/<#([0-9]*)>/)[1];
 			}
-			catch
+			catch 
 			{
 				throw `${args[0]} is not a proper channel tag!`;
 			}
