@@ -14,27 +14,33 @@ module.exports =
 	guildOnly: true, 
 	execute: async (message, args) =>
 	{
+		console.log(args)
 		// parse
 		if (args[0].toLowerCase().includes("s"))
 		{
 			var is_stealable = 1;
-
-			var i = 1;
 		}
 		else
 		{
 			var is_stealable = 0;
-			var i = 0;
 		}
 
 		if (args[0].toLowerCase().includes("p"))
 		{
 			var is_public = 1;
-			var i = 1;
 		}
 		else
 		{
 			var is_public = 0;
+		}
+
+		// set var i to indicate which argument is the channel tag
+		if (is_public || is_stealable)
+		{
+			var i = 1;
+		}
+		else
+		{
 			var i = 0;
 		}
 

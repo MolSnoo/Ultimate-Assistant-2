@@ -60,7 +60,7 @@ module.exports =
 
 			if (parseInt(start_time) <= time_server_int)
 			{
-				throw "Too early";
+				throw "Please enter a time in the future";
 			}
 
 			var start_time_server = date.parse(start_time, 'YYYYMMDDHHmm', true);
@@ -72,6 +72,13 @@ module.exports =
 			// console.log(e);
 			throw `${args[2]} is not a valid date! Be sure to format it as yyyy-mm-dd-hh-mm, where mm is 00 or 30, and at a time later than now (${date.format(time_server, 'YYYY-MM-DD-HH:mm', true)})`;
 		}
+
+		// Check validity of date (ex. month is between 01 and 12, hour is between 00 and 23)
+		if (isNaN(start_time_utc))
+		{
+			throw `${args[2]} is not a valid date! Check that the date exists (i.e. Feb 30). And be sure to format it as yyyy-mm-dd-hh-mm, where mm is 00 or 30, and at a time later than now (${date.format(time_server, 'YYYY-MM-DD-HH:mm', true)})`;
+		}
+
 
 		// Get message
 		let msg = args.slice(3).join(" ");
@@ -97,28 +104,5 @@ module.exports =
 		}
 
 		return await message.channel.send(embed);
-
-		// mm = parseInt(now.getUTCMinutes());
-		// // Round up or down to 00 or 30 minutes
-		// if (15 <= mm && mm < 45) // 30
-		// {
-		// 	now.setMinutes(30);
-		// }
-		// else if (0 <= mm && mm < 15) // keep the hour at 00
-		// {
-		// 	now.setMinutes(0);
-		// }
-		// else // go forward one hour to 00
-		// {
-		// 	now.setMinutes(0);
-		// 	date.addHours(now, 1);
-		// }
-
-		// // format as string
-		// now = parseInt(date.format(now, 'YYYYMMDDHHmm', true));
-
-		// let sql = `SELECT * FROM Announcements WHERE NextPosting = ?`;
-
-		// return current_announcements = db.prepare(sql).all(now);
 	}
 }
