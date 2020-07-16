@@ -14,7 +14,6 @@ module.exports =
 	guildOnly: true, 
 	execute: async (message, args) =>
 	{
-		console.log(args)
 		// parse
 		if (args[0].toLowerCase().includes("s"))
 		{
