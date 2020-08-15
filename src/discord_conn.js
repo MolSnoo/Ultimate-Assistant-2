@@ -257,11 +257,11 @@ bot.on('guildCreate', async guild =>
 // On guild remove. Remove the announcements and guild entry and leave the rest
 bot.on('guildDelete', async guild =>
 {
-	// Remove announcements
-	utils.fn.remove_all_guild_announcements(guild.id);
+	// Remove announcements. When servers go down, members are technically kicked so this is removed
+	// utils.fn.remove_all_guild_announcements(guild.id);
 
-	// Remove guild entry
-	utils.fn.rem_guild(guild.id);
+	// Remove guild entry. Same as above
+	// utils.fn.rem_guild(guild.id);
 	
 
 	// DM developer
