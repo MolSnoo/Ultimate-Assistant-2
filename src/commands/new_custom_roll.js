@@ -4,7 +4,7 @@ const utils = require('../utils.js');
 module.exports = 
 {
 	name: 'new_custom_roll', 
-	aliases: ['newcustomroll', 'newcr', 'updatecr'], 
+	aliases: ['newcustomroll', 'newcr', 'updatecr', 'ncr'], 
 	description: "Add or update a custom roll. It is recommended to make the roll name a single word", 
 	usage: '<roll_name> <d20 notation>', 
 	examples: ["!ncr str 1d20+1", "!ncr 'str roll' d20+1"], 
