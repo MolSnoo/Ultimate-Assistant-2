@@ -24,11 +24,18 @@ exports.fn =
 			// Check for time pause in guild
 			if (cont)
 			{
-				let guild_info = utils.fn.get_guild_entry(channel.guild.id);
+				try
+				{
+					var guild_info = utils.fn.get_guild_entry(channel.guild.id);
+				}
+				catch
+				{
+					cont = false;
+				}
 			}
 			
 
-			if (cont && guild_info.Timeflow == 1)
+			if (cont && guild_info && guild_info.Timeflow == 1)
 			{
 				try
 				{
