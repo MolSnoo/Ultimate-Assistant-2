@@ -9,14 +9,26 @@ exports.fn =
 
 		for (announcement of current_announcements)
 		{
+			let cont = true;
+
 			// Send to guildID/channelID the message
-			let channel = bot.channels.get(announcement.ChannelID);
+			try
+			{
+				var channel = bot.channels.get(announcement.ChannelID);
+			}
+			catch
+			{
+				cont = false;
+			}
 
 			// Check for time pause in guild
-			let guild_info = utils.fn.get_guild_entry(channel.guild.id);
+			if (cont)
+			{
+				let guild_info = utils.fn.get_guild_entry(channel.guild.id);
+			}
 			
 
-			if (guild_info.Timeflow == 1)
+			if (cont && guild_info.Timeflow == 1)
 			{
 				try
 				{
