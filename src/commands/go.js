@@ -12,11 +12,7 @@ module.exports =
 	guildOnly: true, 
 	execute: async (message, args) =>
 	{
-		try
-		{
-			message.guild.fetchMember(message.author);
-		}
-		catch {}
+		const message_member = utils.fn.get_message_member(message);
 		
 		// Check for regex
 		try
@@ -35,7 +31,7 @@ module.exports =
 		let guild_map_role_ids = guild_map.map((entry) => entry.RoleID);
 
 		// check user role to see if one is in the map
-		let member_map_role = message.member.roles.find((role) => guild_map_role_ids.includes(role.id));
+		let member_map_role = message_member.roles.find((role) => guild_map_role_ids.includes(role.id));
 
 		if (!member_map_role)
 		{
@@ -53,8 +49,8 @@ module.exports =
 		let new_role_id = guild_map.find((entry) => entry.ChannelID == outgoing_channel.id).RoleID;
 		try
 		{
-			await message.member.addRole(new_role_id);
-			await message.member.removeRole(member_map_role.id);
+			await message_member.addRole(new_role_id);
+			await message_member.removeRole(member_map_role.id);
 		}
 		catch
 		{

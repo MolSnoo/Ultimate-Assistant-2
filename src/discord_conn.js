@@ -126,18 +126,13 @@ bot.on('message', async message =>
 			}
 	}
 
-	// getch message member as message_member
-
-	try
-	{
-		message.guild.fetchMember(message.author);
-	}
-	catch {}
+	// fetch message member as message_member
+	const message_member = utils.fn.get_message_member(message);
 
 	// Admin check
-	if (command.adminOnly && !message.member.hasPermission(['ADMINISTRATOR']))
+	if (command.adminOnly && !message_member.hasPermission(['ADMINISTRATOR']))
 	{
-		let author_roles = message.member.roles;
+		let author_roles = message_member.roles;
 		author_roles = author_roles.map(role => role.id)
 		let mod_roles = utils.fn.get_mod_roles(message.guild.id);
 		let intersection = author_roles.filter(role => mod_roles.includes(role));

@@ -15,12 +15,7 @@ module.exports =
 	execute: async (message, args) =>
 	{
 		// get member
-		try
-		{
-			message.guild.fetchMember(message.author);
-		}
-		catch {}
-
+		const message_member = utils.fn.get_message_member(message);
 
 		// check for a custom roll
 		try
@@ -121,9 +116,9 @@ module.exports =
 		}
 
 		// discord Embed
-		if (message.member.nickname)
+		if (message_member.nickname)
 		{
-			var name = message.member.nickname;
+			var name = message_member.nickname;
 		}
 		else
 		{
