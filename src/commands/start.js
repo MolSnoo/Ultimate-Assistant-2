@@ -36,7 +36,8 @@ module.exports =
 		let player_names = [];
 		for (player_id of player_ids)
 		{
-			player_obj = message.guild.members.find((member) => member.id == player_id);
+			const guild_members = message.guild.fetchMembers();
+			player_obj = guild_members.find((member) => member.id == player_id);
 
 			try
 			{

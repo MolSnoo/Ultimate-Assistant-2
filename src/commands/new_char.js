@@ -18,8 +18,9 @@ module.exports =
 		let player_id_match = args[1].match(/^<@!?([0-9]*)>$/);
 		if (player_id_match)
 		{
+			const guild_members = await message.guild.fetchMembers();
 			var player_id = player_id_match[1];
-			var player_obj = message.guild.members.find((member) => member.user.id == player_id).user;
+			var player_obj = guild_members.find((member) => member.user.id == player_id).user;
 		}
 		else
 		{
