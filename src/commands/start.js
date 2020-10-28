@@ -36,8 +36,10 @@ module.exports =
 		let player_names = [];
 		for (player_id of player_ids)
 		{
-			const guild_members = message.guild.fetchMembers();
-			player_obj = guild_members.find((member) => member.id == player_id);
+			// const guild_members = await message.guild.fetchMembers();
+
+			// player_obj = guild_members.find((member) => member.id == player_id);
+			player_obj = await message.guild.fetchMember(player_id);
 
 			try
 			{
@@ -45,7 +47,7 @@ module.exports =
 			}
 			catch
 			{
-				await message.channel.send(`Could not assign role to ${player_id}! Check bot permissions and membership of that user`);
+				await message.channel.send(`Could not assign role to ${player_obj.username}! Check bot permissions and membership of that user`);
 				continue;
 			}
 
