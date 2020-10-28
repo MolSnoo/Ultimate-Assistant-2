@@ -1,6 +1,6 @@
 const date = require('date-and-time');
 
-const db = require('better-sqlite3')('./src/master.db');
+const db = require('better-sqlite3')('./src/master-test.db');
 console.log("Connected to database");
 
 exports.fn = 
@@ -117,11 +117,13 @@ exports.fn =
 		return all_member_objs[closest_match_idx];
 	}, 
 
+	// returns a Promise <Member>
 	get_message_member: (msg_obj) => 
 	{
 		try
 		{
 			return msg_obj.guild.fetchMember(msg_obj.author);
+
 		}
 		catch {}
 	}, 

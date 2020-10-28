@@ -15,7 +15,7 @@ module.exports =
 	execute: async (message, args) =>
 	{
 		// get member
-		const message_member = utils.fn.get_message_member(message);
+		const message_member = await utils.fn.get_message_member(message);
 
 		// check for a custom roll
 		try

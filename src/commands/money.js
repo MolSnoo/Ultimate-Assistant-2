@@ -13,7 +13,7 @@ module.exports =
 	guildOnly: true,
 	execute: async (message, args) =>
 	{
-		const message_member = utils.fn.get_message_member(message);
+		const message_member = await utils.fn.get_message_member(message);
 		
 		if (args.length == 1) // check mod/admin/owner
 		{
