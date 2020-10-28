@@ -14,6 +14,14 @@ module.exports =
 	guildOnly: true, 
 	execute: async (message, args) =>
 	{
+		// get member
+		try
+		{
+			message.guild.fetchMember(message.author);
+		}
+		catch {}
+
+
 		// check for a custom roll
 		try
 		{
