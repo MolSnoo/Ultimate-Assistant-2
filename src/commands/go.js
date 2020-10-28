@@ -12,6 +12,12 @@ module.exports =
 	guildOnly: true, 
 	execute: async (message, args) =>
 	{
+		try
+		{
+			message.guild.fetchMember(message.author);
+		}
+		catch {}
+		
 		// Check for regex
 		try
 		{
