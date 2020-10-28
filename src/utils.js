@@ -1,6 +1,6 @@
 const date = require('date-and-time');
 
-const db = require('better-sqlite3')('./src/master-test.db');
+const db = require('better-sqlite3')('./src/master.db');
 console.log("Connected to database");
 
 exports.fn = 
