@@ -36,7 +36,9 @@ module.exports =
 		{
 			let receipt_channel_obj = message.guild.channels.find((element) => element.id == guild_entry.AnonDMChannel);
 
-			var recipient_obj = message.guild.members.find((element) => element.id == recipient_player_id);
+			const guild_members = await message.guild.fetchMembers();
+
+			var recipient_obj = guild_members.find((element) => element.id == recipient_player_id);
 
 			try
 			{

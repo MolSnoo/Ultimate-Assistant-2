@@ -20,7 +20,7 @@ module.exports =
 		// check perms (admin, mod, or character's player)
 		let member_roles = message_member.roles.map(role => role.id);
 
-		let is_admin = message.member.hasPermission("ADMINISTRATOR");
+		let is_admin = message_member.hasPermission("ADMINISTRATOR");
 
 		if (!is_admin)
 		{
