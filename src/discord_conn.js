@@ -88,14 +88,15 @@ bot.on('message', async message =>
 
 	const commandName = args_str.shift().toLowerCase();
 
-	var args = args_str.input.match(/[^\s"']+|"([^"]*)"|'([^']*)'/g);
-	args = args.slice(1).map(e => e.replace(/^[\"']|[\"']$/g, ""));
+	var args = args_str.input.match(/[^\s"'“”]+|"([^"]*)"|'([^']*)'|”([”^]*)”/g);
+	args = args.slice(1).map(e => e.replace(/^[\"'“”]|[\"'“”]$/g, ""));
 
 	// Check if it's a command name or alias
 	const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.aliases.includes(commandName));
 
 	// If it's not a command, exit
 	if (!command) return;
+
 
 	// Check if guild only
 	if (command.guildOnly && message.channel.type !== 'text')
@@ -124,6 +125,14 @@ bot.on('message', async message =>
 				return;
 			}
 	}
+
+	// getch message member as message_member
+
+	try
+	{
+		message.guild.fetchMember(message.author);
+	}
+	catch {}
 
 	// Admin check
 	if (command.adminOnly && !message.member.hasPermission(['ADMINISTRATOR']))
