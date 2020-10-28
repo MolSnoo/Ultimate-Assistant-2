@@ -15,8 +15,10 @@ module.exports =
 	{
 		let char_nickname = args[0];
 
+		const message_member = utils.fn.get_message_member(message);
+
 		// check perms (admin, mod, or character's player)
-		let member_roles = message.member.roles.map(role => role.id);
+		let member_roles = message_member.roles.map(role => role.id);
 
 		let is_admin = message.member.hasPermission("ADMINISTRATOR");
 
