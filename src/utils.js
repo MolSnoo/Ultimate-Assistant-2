@@ -117,11 +117,13 @@ exports.fn =
 		return all_member_objs[closest_match_idx];
 	}, 
 
+	// returns a Promise <Member>
 	get_message_member: (msg_obj) => 
 	{
 		try
 		{
 			return msg_obj.guild.fetchMember(msg_obj.author);
+
 		}
 		catch {}
 	}, 

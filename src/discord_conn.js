@@ -127,8 +127,9 @@ bot.on('message', async message =>
 	}
 
 	// fetch message member as message_member
-	const message_member = utils.fn.get_message_member(message);
-
+	// const message_promise = await utils.fn.get_message_member(message);
+	const message_member = await utils.fn.get_message_member(message);
+	
 	// Admin check
 	if (command.adminOnly && !message_member.hasPermission(['ADMINISTRATOR']))
 	{
