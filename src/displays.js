@@ -238,7 +238,7 @@ exports.fn =
 	anon_dm_receipt: (sender_obj, recipient_obj, content) =>
 	{
 		let embed = new Discord.RichEmbed()
-			.setTitle(`${sender_obj.username} has sent an Anonymous Message to ${recipient_obj.user.username}`)
+			.setTitle(`${sender_obj.username} has sent an Anonymous Message to ${recipient_obj.username}`)
 			.setDescription(content.slice(0, 2000))
 			.setFooter('The developer is not responsible for the contents of anonymous DMs.');
 

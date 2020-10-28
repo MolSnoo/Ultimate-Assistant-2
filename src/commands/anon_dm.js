@@ -12,7 +12,8 @@ module.exports =
 	category: 'Misc', 
 	args: 2, 
 	guildOnly: true,
-	execute: async (message, args) =>
+	reqBot: true, 
+	execute: async (message, args, bot) =>
 	{
 		// guild entry and check for anondm receipt channel and enabled anon dms
 		let guild_entry = utils.fn.get_guild_entry(message.guild.id);
@@ -36,9 +37,10 @@ module.exports =
 		{
 			let receipt_channel_obj = message.guild.channels.find((element) => element.id == guild_entry.AnonDMChannel);
 
-			const guild_members = await message.guild.fetchMembers();
+			// const guild_members = await message.guild.fetchMembers();
 
-			var recipient_obj = guild_members.find((element) => element.id == recipient_player_id);
+			// var recipient_obj = guild_members.find((element) => element.id == recipient_player_id);
+			var recipient_obj = await bot.fetchUser(recipient_player_id);
 
 			try
 			{
