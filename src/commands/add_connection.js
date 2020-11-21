@@ -88,9 +88,13 @@ module.exports =
 				utils.fn.add_channel_to_map(message.guild.id, outgoing_id, new_role.id);
 
 				// Attempt to set channel perms for the role
+
+				let channel_obj = message.guild.channels.find('id', outgoing_id);
+				
+				// console.log(channel_obj)
 				try
 				{
-					await channel_obj.overwritePermissions(new_role, {VIEW_CHANNEL: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true});
+					channel_obj.overwritePermissions(new_role, {VIEW_CHANNEL: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true}).then().catch(console.error);
 				}
 				catch
 				{

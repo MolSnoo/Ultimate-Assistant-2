@@ -107,6 +107,7 @@ exports.fn =
 	}, 
 
 	// Return the member object
+	// Bugged due to member caching
 	get_closest_member_match: (guild_obj, input) =>
 	{
 		let all_members = guild_obj.members.map((member) => member.user.username);
