@@ -63,7 +63,7 @@ module.exports =
 		try
 		{
 			await channel_obj.overwritePermissions(new_role, {VIEW_CHANNEL: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true});
-			await message.channel.send(`Added view, send, and history perms to ${channel_name}\nUse \`!add_connections #${channel_name} <c1> [c2]...\` to add connections`);
+			await message.channel.send(`Added view, send, and history perms to ${channel_name}\nUse \`!add_connection #${channel_name} <c1> [c2]...\` to add connections`);
 		}
 		catch
 		{

@@ -14,6 +14,8 @@ module.exports =
 	{
 		const message_member = await utils.fn.get_message_member(message);
 		
+		// console.log(message_member);
+
 		// Check for regex
 		try
 		{
@@ -25,13 +27,15 @@ module.exports =
 			var outgoing_channel = utils.fn.get_closest_channel_match(message.guild, args.join(" "));
 		}
 
-		//
+		
 		// get guild map
 		let guild_map = utils.fn.get_guild_map(message.guild.id);
 		let guild_map_role_ids = guild_map.map((entry) => entry.RoleID);
 
 		// check user role to see if one is in the map
 		let member_map_role = message_member.roles.find((role) => guild_map_role_ids.includes(role.id));
+
+		// console.log(member_map_role);
 
 		if (!member_map_role)
 		{
@@ -40,6 +44,8 @@ module.exports =
 
 		let connecting_channel_ids = guild_map.find((entry) => entry.RoleID == member_map_role.id).OutgoingConnections;
 
+		console.log(connecting_channel_ids);
+
 		if (!connecting_channel_ids.includes(outgoing_channel.id))
 		{
 			throw `Your current location does not connect to ${outgoing_channel}!`;
@@ -47,14 +53,23 @@ module.exports =
 
 		// Swap the roles
 		let new_role_id = guild_map.find((entry) => entry.ChannelID == outgoing_channel.id).RoleID;
+
 		try
 		{
-			await message_member.addRole(new_role_id);
-			await message_member.removeRole(member_map_role.id);
+			message_member.addRole(new_role_id).then().catch(console.error);
 		}
 		catch
 		{
-			throw `Unable to swap your roles!`;
+			throw `Could not assign role to ${player_obj.username}! Check bot permissions and membership of that user`;
+		}
+		
+		try
+		{
+			message_member.removeRole(member_map_role.id).then().catch(console.error);
+		}
+		catch
+		{
+			throw `Could not remove role from ${player_obj.username}! Check bot permissions and membership of that user`;
 		}
 	}
 }

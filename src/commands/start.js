@@ -34,6 +34,7 @@ module.exports =
 
 		// Assign to all players if possible
 		let player_names = [];
+		console.log(player_ids);
 		for (player_id of player_ids)
 		{
 			// const guild_members = await message.guild.fetchMembers();
@@ -43,16 +44,18 @@ module.exports =
 
 			try
 			{
-				await player_obj.addRole(starting_channel_role_id);
+				console.log("Adding role");
+				player_obj.addRole(starting_channel_role_id).then(player_names.push(player_obj.user.username)).catch(console.error);
 			}
-			catch
+			catch (e)
 			{
+				console.log(e);
 				await message.channel.send(`Could not assign role to ${player_obj.username}! Check bot permissions and membership of that user`);
 				continue;
 			}
 
 			// Add name for printing
-			player_names.push(player_obj.user.username);
+			// player_names.push(player_obj.user.username);
 		}
 
 		return await message.channel.send(`Assigned starting role to ${player_names.join(", ")}`);
