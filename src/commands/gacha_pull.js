@@ -21,7 +21,7 @@ module.exports =
 
 		if (char_entry.Currency <= 0)
 		{
-			throw `${char_nickname} does not have any currency (or is in debt)!`;
+			throw `${char_entry.CharName} does not have any currency (or is in debt)!`;
 		}
 
 		// Gacha
