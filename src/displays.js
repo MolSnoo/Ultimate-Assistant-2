@@ -213,7 +213,7 @@ exports.fn =
 	{
 		embed = new Discord.RichEmbed()
 			.setColor(utils.fn.random_color())
-			.setTitle(`${char_entry.CharNickname} pulls ${gacha_entry.ItemName}!`.slice(0, 200))
+			.setTitle(`${char_entry.CharName} pulls ${gacha_entry.ItemName}!`.slice(0, 200))
 			.setDescription(`*${gacha_entry.Description.slice(0, 2000)}*`)
 			.setFooter(`${gacha_entry.ItemName} added to inventory.\n${char_entry.Currency-1} pulls remaining`);
 
