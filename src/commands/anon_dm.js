@@ -56,6 +56,8 @@ module.exports =
 		try
 		{
 			await recipient_obj.send(displays.fn.anon_dm_private(message.author, recipient_obj, message.guild, recipient_nickname, anon_msg));
+
+			await message.channel.send("Sent!");
 		}
 		catch
 		{
