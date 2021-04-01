@@ -45,6 +45,7 @@ bot.once('ready', () =>
 	let db_guilds = utils.fn.all_bot_guilds().map((entry) => entry.GuildID);
 
 	let new_guilds = bot_guilds.filter((id) => !db_guilds.includes(id));
+	console.log(new_guilds);
 	// let removed_guilds = db_guilds.filter((id) => !bot_guilds.includes(id));
 	for (id of new_guilds)
 	{
