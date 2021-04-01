@@ -42,7 +42,7 @@ bot.once('ready', () =>
 {
 	// Add/remove any guilds that the bot joined while offline
 	let bot_guilds = bot.guilds.map((guild) => guild.id);
-	consold.log(bot_guilds);
+	console.log(bot_guilds);
 	let db_guilds = utils.fn.all_bot_guilds().map((entry) => entry.GuildID);
 // 	console.log(db_guilds);
 	let new_guilds = bot_guilds.filter((id) => !db_guilds.includes(id));
