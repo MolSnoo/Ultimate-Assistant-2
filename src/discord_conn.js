@@ -45,18 +45,18 @@ bot.once('ready', () =>
 	let db_guilds = utils.fn.all_bot_guilds().map((entry) => entry.GuildID);
 
 	let new_guilds = bot_guilds.filter((id) => !db_guilds.includes(id));
-	let removed_guilds = db_guilds.filter((id) => !bot_guilds.includes(id));
+	// let removed_guilds = db_guilds.filter((id) => !bot_guilds.includes(id));
 	for (id of new_guilds)
 	{
 		utils.fn.add_guild(id);
 	}
-	for (id of removed_guilds)
-	{
-		utils.fn.rem_guild(id);
-	}
+// 	for (id of removed_guilds)
+// 	{
+// 		utils.fn.rem_guild(id);
+// 	}
 
 	console.log(`Added ${new_guilds.join(", ")} to db`);
-	console.log(`Removed ${removed_guilds.join(", ")} from db`);
+// 	console.log(`Removed ${removed_guilds.join(", ")} from db`);
 
 	// start the announcement loop
 	cron.schedule("*/30 * * * *", () => announcement_loop.fn.announcement_loop(bot));
