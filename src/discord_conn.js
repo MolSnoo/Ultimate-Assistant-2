@@ -41,6 +41,7 @@ console.log("Handled passed announcements");
 bot.once('ready', () => 
 {
 	// Add/remove any guilds that the bot joined while offline
+	console.log(bot.guilds);
 	let bot_guilds = bot.guilds.array.map((guild) => guild.id);
 	let db_guilds = utils.fn.all_bot_guilds().map((entry) => entry.GuildID);
 // 	console.log(db_guilds);
