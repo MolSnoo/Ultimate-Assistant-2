@@ -221,7 +221,7 @@ bot.on('message', async message =>
 				error_msg += `**Message**: ${message.content}\n`;
 				error_msg += `**Error**: ${error.name}: ${error.message}\n`;
 				error_msg += `${error}`;
-				let owner = bot.fetchUser(devID)
+				let owner = bot.users.fetch(devID)
 				.then ((owner) =>
 				{
 					owner.send(`${error_msg}\n--------------------------------------------`.slice(0, 1900));
@@ -244,7 +244,7 @@ bot.on('guildCreate', async guild =>
 	// DM developer
 	try
 	{
-		let owner = bot.fetchUser(devID)
+		let owner = bot.users.fetch(devID)
 		.then ((owner) =>
 		{
 			owner.send(`Added to **${guild}**\n--------------------------------------------`)
@@ -271,7 +271,7 @@ bot.on('guildDelete', async guild =>
 	// DM developer
 	try
 	{
-		let owner = bot.fetchUser(devID)
+		let owner = bot.users.fetch(devID)
 		.then ((owner) =>
 		{
 			owner.send(`Removed from **${guild}**\n--------------------------------------------`)

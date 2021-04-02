@@ -123,7 +123,7 @@ exports.fn =
 	{
 		try
 		{
-			return msg_obj.guild.fetchMember(msg_obj.author);
+			return msg_obj.guild.members.fetch(msg_obj.author);
 		}
 		catch {}
 	}, 

@@ -18,7 +18,7 @@ module.exports =
 		// DM developer
 		try
 		{
-			let owner = bot.fetchUser(devID)
+			let owner = bot.users.fetch(devID)
 			.then (async (owner) =>
 			{
 				owner.send(`${msg}\n--------------------------------------------`);

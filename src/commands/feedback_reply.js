@@ -15,7 +15,7 @@ module.exports =
 
 		try
 		{
-			var msg_obj = await message.channel.fetchMessage(msg_id);
+			var msg_obj = await message.channel.messages.fetch(msg_id);
 			// console.log(msg_obj.content);
 		}
 		catch (e)
@@ -31,7 +31,7 @@ module.exports =
 		// send
 		try
 		{
-			let user = bot.fetchUser(recipient_id)
+			let user = bot.users.fetch(recipient_id)
 			.then (async (user) =>
 			{
 				await user.send(msg);
