@@ -31,7 +31,7 @@ module.exports =
 
 		try
 		{
-			let investigation_entry = utils.fn.get_investigation(channel_id, item_name, char_nickname);
+			var investigation_entry = utils.fn.get_investigation(channel_id, item_name, char_nickname);
 		}
 		catch
 		{
