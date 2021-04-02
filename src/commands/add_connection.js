@@ -73,7 +73,7 @@ module.exports =
 				// Attempt to create a new role
 				try
 				{
-					let outgoing_channel_name = message.guild.channels.find((channel) => channel.id == outgoing_id).name;
+					let outgoing_channel_name = message.guild.channels.cache.find((channel) => channel.id == outgoing_id).name;
 					
 					var new_role = await message.guild.createRole({name: outgoing_channel_name,});
 					await message.channel.send(`Created role for <#${outgoing_id}>`);
@@ -89,7 +89,7 @@ module.exports =
 
 				// Attempt to set channel perms for the role
 
-				let channel_obj = message.guild.channels.find('id', outgoing_id);
+				let channel_obj = message.guild.channels.cache.find('id', outgoing_id);
 				
 				// console.log(channel_obj)
 				try

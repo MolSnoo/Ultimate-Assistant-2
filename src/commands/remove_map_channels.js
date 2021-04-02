@@ -41,7 +41,7 @@ module.exports =
 				// Try to remove the role
 				let role_id = guild_map.find((entry) => entry.ChannelID == channel_id).RoleID;
 
-				let role_obj = message.guild.roles.find((role) => role.id == role_id);
+				let role_obj = message.guild.roles.cache.find((role) => role.id == role_id);
 
 				try
 				{

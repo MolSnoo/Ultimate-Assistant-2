@@ -314,7 +314,7 @@ exports.fn =
 		{
 			// Make embed
 			embeds[idx] = new Discord.RichEmbed()
-				.setTitle(`Investigatables in #${guild_obj.channels.find((channel) => channel.id == channel_id).name}`.slice(0, 100));
+				.setTitle(`Investigatables in #${guild_obj.channels.cache.find((channel) => channel.id == channel_id).name}`.slice(0, 100));
 			
 			let channel_investigation_entries = investigation_entries.filter((entry) => entry.ChannelID == channel_id);
 

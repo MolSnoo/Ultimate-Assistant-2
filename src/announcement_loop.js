@@ -14,7 +14,7 @@ exports.fn =
 			// Send to guildID/channelID the message
 			try
 			{
-				var channel = bot.channels.get(announcement.ChannelID);
+				var channel = bot.channels.cache.get(announcement.ChannelID);
 			}
 			catch
 			{

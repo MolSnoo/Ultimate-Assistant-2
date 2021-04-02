@@ -28,7 +28,15 @@ module.exports =
 
 		// Get player char nickname
 		let char_nickname = utils.fn.get_player_character(message.guild.id, message.author.id);
-		let investigation_entry = utils.fn.get_investigation(channel_id, item_name, char_nickname);
+
+		try
+		{
+			let investigation_entry = utils.fn.get_investigation(channel_id, item_name, char_nickname);
+		}
+		catch
+		{
+			return;
+		}
 
 		// Send
 		let msg = `**${utils.fn.to_title_case(item_name)}**\n${investigation_entry.ItemInfo}`;

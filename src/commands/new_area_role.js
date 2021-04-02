@@ -20,7 +20,7 @@ module.exports =
 		{
 			var channel_id = args[0].match(regex)[1];
 			// console.log(message.guild.channels);
-			var channel_obj = message.guild.channels.get(channel_id);
+			var channel_obj = message.guild.channels.cache.get(channel_id);
 			var channel_name = channel_obj.name;
 		}
 		catch (e)

@@ -18,7 +18,7 @@ module.exports =
 
 		for (id of mod_roles)
 		{
-			msg += `${message.guild.roles.find((role) => role.id == id).name}\n`;
+			msg += `${message.guild.roles.cache.find((role) => role.id == id).name}\n`;
 		}
 
 		return await message.channel.send(`**Mod roles in ${message.guild}**\n${msg}`);

@@ -20,7 +20,7 @@ module.exports =
 		try
 		{
 			let outgoing_channel_id = args[0].match(/<#([0-9]*)>/)[1];
-			var outgoing_channel = message.guild.channels.find((channel) => channel.id == outgoing_channel_id);
+			var outgoing_channel = message.guild.channels.cache.find((channel) => channel.id == outgoing_channel_id);
 		}
 		catch 
 		{
@@ -33,7 +33,7 @@ module.exports =
 		let guild_map_role_ids = guild_map.map((entry) => entry.RoleID);
 
 		// check user role to see if one is in the map
-		let member_map_role = message_member.roles.find((role) => guild_map_role_ids.includes(role.id));
+		let member_map_role = message_member.roles.cache.find((role) => guild_map_role_ids.includes(role.id));
 
 		// console.log(member_map_role);
 
@@ -56,7 +56,7 @@ module.exports =
 
 		try
 		{
-			message_member.addRole(new_role_id).then().catch(console.error);
+			message_member.roles.add(new_role_id).then().catch(console.error);
 		}
 		catch
 		{
@@ -65,7 +65,7 @@ module.exports =
 		
 		try
 		{
-			message_member.removeRole(member_map_role.id).then().catch(console.error);
+			message_member.roles.remove(member_map_role.id).then().catch(console.error);
 		}
 		catch
 		{
