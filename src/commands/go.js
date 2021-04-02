@@ -56,7 +56,7 @@ module.exports =
 
 		try
 		{
-			message_member.roels.add(new_role_id).then().catch(console.error);
+			message_member.roles.add(new_role_id).then().catch(console.error);
 		}
 		catch
 		{
