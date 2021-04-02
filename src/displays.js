@@ -250,7 +250,7 @@ exports.fn =
 		var channel_names = new Object();
 		
 		// Get channel names for convenience
-		for (channel of guild_obj.channels)
+		for (channel of guild_obj.channels.cache)
 		{
 			channel_names[channel[0]] = channel[1].name;
 		}
