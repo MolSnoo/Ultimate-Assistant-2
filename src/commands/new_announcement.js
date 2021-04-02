@@ -88,7 +88,7 @@ module.exports =
 		utils.fn.add_announcement(message.guild.id, channel_id, msg.slice(0, 2000), interval, parseInt(date.format(start_time_utc, 'YYYYMMDDHHmm', true)));
 
 		// Notify
-		var embed = new Discord.RichEmbed()
+		var embed = new Discord.MessageEmbed()
 			.setTitle(`New announcement added`)
 			.setDescription(msg.slice(0, 2000))
 			.addField('Channel', `<#${channel_id}>`)

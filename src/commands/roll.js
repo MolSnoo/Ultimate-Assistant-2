@@ -124,7 +124,7 @@ module.exports =
 		{
 			var name = message.author.username;
 		}
-		let embed = new Discord.RichEmbed()
+		let embed = new Discord.MessageEmbed()
 			.setTitle(`${name} rolls ${roll_str.slice(0, 150)}`)
 			.setDescription(detailed_str)
 			.addField(sum_str, `= **${total}**`);

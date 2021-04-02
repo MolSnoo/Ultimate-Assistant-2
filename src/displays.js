@@ -7,7 +7,7 @@ exports.fn =
 	// Character info
 	char_embed: (char_entry) =>
 	{
-		var embed = new Discord.RichEmbed()
+		var embed = new Discord.MessageEmbed()
 			.setColor(`0x${char_entry.EmbedColor}`)
 			.setTitle(char_entry.CharName)
 			.setDescription(`Nickname: ${char_entry.CharNickname}`);
@@ -35,7 +35,7 @@ exports.fn =
 	// A simple embedded list of guild characters and nicknames
 	all_guild_chars: (char_entries, guild_name) =>
 	{
-		var embed = new Discord.RichEmbed()
+		var embed = new Discord.MessageEmbed()
 			.setTitle(`Characters in ${guild_name}`);
 
 		var desc = "";
@@ -62,7 +62,7 @@ exports.fn =
 
 		for (let i = 0; i < n_embeds; i++)
 		{
-			embeds[i] = new Discord.RichEmbed()
+			embeds[i] = new Discord.MessageEmbed()
 				.setColor(`0x${char_entry.EmbedColor}`)
 
 			// Title the first embed
@@ -108,7 +108,7 @@ exports.fn =
 	// Custom rolls
 	custom_rolls: (char_entry) =>
 	{
-		var embed = new Discord.RichEmbed()
+		var embed = new Discord.MessageEmbed()
 			.setColor(`0x${char_entry.EmbedColor}`)
 			.setTitle(`Custom Rolls for ${char_entry.CharName}`)
 	
@@ -141,7 +141,7 @@ exports.fn =
 			var title = `Announcements in ${guild_name} (UTC+${timezone})`.slice(0, 100);
 		}
 
-		var embed = new Discord.RichEmbed()
+		var embed = new Discord.MessageEmbed()
 			.setTitle(title);
 
 		var counter = 0;
@@ -171,7 +171,7 @@ exports.fn =
 		var counter = 0;
 		for (let i = 0; i < n_embeds; i++)
 		{
-			embeds[i] = new Discord.RichEmbed()
+			embeds[i] = new Discord.MessageEmbed()
 
 			// Title the first embed
 			if (i == 0)
@@ -211,7 +211,7 @@ exports.fn =
 
 	gacha_pull: (gacha_entry, char_entry) =>
 	{
-		embed = new Discord.RichEmbed()
+		embed = new Discord.MessageEmbed()
 			.setColor(utils.fn.random_color())
 			.setTitle(`${char_entry.CharName} pulls ${gacha_entry.ItemName}!`.slice(0, 200))
 			.setDescription(`*${gacha_entry.Description.slice(0, 2000)}*`)
@@ -227,7 +227,7 @@ exports.fn =
 
 	anon_dm_private: (sender_obj, recipient_obj, guild_obj, recipient_nickname, content) =>
 	{
-		let embed = new Discord.RichEmbed()
+		let embed = new Discord.MessageEmbed()
 			.setTitle(`${recipient_nickname} has received an Anonymous Message!`)
 			.setDescription(content.slice(0, 2000))
 			.setFooter(`A receipt of this message has been sent to the admins of ${guild_obj}. The developer is not responsible for the contents of anonymous DMs.`);
@@ -237,7 +237,7 @@ exports.fn =
 
 	anon_dm_receipt: (sender_obj, recipient_obj, content) =>
 	{
-		let embed = new Discord.RichEmbed()
+		let embed = new Discord.MessageEmbed()
 			.setTitle(`${sender_obj.username} has sent an Anonymous Message to ${recipient_obj.username}`)
 			.setDescription(content.slice(0, 2000))
 			.setFooter('The developer is not responsible for the contents of anonymous DMs.');
@@ -262,7 +262,7 @@ exports.fn =
 
 		for (let i = 0; i < n_embeds; i++)
 		{
-			embeds[i] = new Discord.RichEmbed();
+			embeds[i] = new Discord.MessageEmbed();
 
 			for (let j = 0; j < 25; j++)
 			{
@@ -313,7 +313,7 @@ exports.fn =
 		for (channel_id of channel_ids)
 		{
 			// Make embed
-			embeds[idx] = new Discord.RichEmbed()
+			embeds[idx] = new Discord.MessageEmbed()
 				.setTitle(`Investigatables in #${guild_obj.channels.cache.find((channel) => channel.id == channel_id).name}`.slice(0, 100));
 			
 			let channel_investigation_entries = investigation_entries.filter((entry) => entry.ChannelID == channel_id);
