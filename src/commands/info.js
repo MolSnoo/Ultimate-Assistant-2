@@ -21,7 +21,7 @@ module.exports =
 		all_users = new Set(all_users);
 
 
-		let embed = new Discord.RichEmbed()
+		let embed = new Discord.MessageEmbed()
 			.setTitle("Info!")
 			.setDescription("Send feedback to the developer with `!feedback <message>`! Full instructions can be found on the development server.")
 			.addField("Add these perms to my highest role to allow full functionality", "Read Messages\nRead Message History\nSend Messages\nManage Roles\nManage Channels\nManage Members")

@@ -19,7 +19,7 @@ module.exports =
 		var categories = Array.from(new Set(commands.map(command => command.category))).sort();
 		categories = categories.filter((cat) => cat != "Dev");
 
-		var embed = new Discord.RichEmbed();
+		var embed = new Discord.MessageEmbed();
 
 		if (args.length && !categories.includes(args[0]))
 		{
