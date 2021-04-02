@@ -41,7 +41,7 @@ console.log("Handled passed announcements");
 bot.once('ready', () => 
 {
 	// Add/remove any guilds that the bot joined while offline
-	let bot_guilds = bot.guilds.map((guild) => guild.id);
+	let bot_guilds = bot.guilds.cache.map((guild) => guild.id);
 	let db_guilds = utils.fn.all_bot_guilds().map((entry) => entry.GuildID);
 
 	let new_guilds = bot_guilds.filter((id) => !db_guilds.includes(id));
@@ -134,7 +134,7 @@ bot.on('message', async message =>
 	if (command.adminOnly && !message_member.hasPermission(['ADMINISTRATOR']))
 	{
 		let author_roles = message_member.roles;
-		author_roles = author_roles.map(role => role.id)
+		author_roles = author_roles.cache.map(role => role.id)
 		let mod_roles = utils.fn.get_mod_roles(message.guild.id);
 		let intersection = author_roles.filter(role => mod_roles.includes(role));
 

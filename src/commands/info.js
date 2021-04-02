@@ -12,9 +12,9 @@ module.exports =
 	{
 		// Add up users
 		let all_users = [];
-		for (guild of bot.guilds)
+		for (guild of bot.guilds.cache)
 		{
-			all_users = all_users.concat(guild[1].members.map(member => member.id));
+			all_users = all_users.concat(guild[1].members.cache.map(member => member.id));
 		}
 
 		// Set

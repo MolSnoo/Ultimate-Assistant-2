@@ -110,11 +110,11 @@ exports.fn =
 	// Bugged due to member caching
 	get_closest_member_match: (guild_obj, input) =>
 	{
-		let all_members = guild_obj.members.map((member) => member.user.username);
+		let all_members = guild_obj.members.cache.map((member) => member.user.username);
 		let lev_distances = all_members.map((member) => this.fn.levenshtein(member, input));
 		let closest_match_idx = this.fn.argmin(lev_distances);
 
-		let all_member_objs = guild_obj.members.map((member) => member.user);
+		let all_member_objs = guild_obj.members.cache.map((member) => member.user);
 		return all_member_objs[closest_match_idx];
 	}, 
 
@@ -131,22 +131,22 @@ exports.fn =
 	// Return the role object
 	get_closest_role_match: (guild_obj, input) =>
 	{
-		let all_roles = guild_obj.roles.map((role) => role.name);
+		let all_roles = guild_obj.roles.cache.map((role) => role.name);
 		let lev_distances = all_roles.map((role) => this.fn.levenshtein(role, input));
 		let closest_match_idx = this.fn.argmin(lev_distances);
 
-		return guild_obj.roles.map((role) => role)[closest_match_idx];
+		return guild_obj.roles.cache.map((role) => role)[closest_match_idx];
 	}, 
 
 	// return the channel obj
 	// Return the role object
 	get_closest_channel_match: (guild_obj, input) =>
 	{
-		let all_channels = guild_obj.channels.map((channel) => channel.name);
+		let all_channels = guild_obj.channels.cache.map((channel) => channel.name);
 		let lev_distances = all_channels.map((channel) => this.fn.levenshtein(channel, input));
 		let closest_match_idx = this.fn.argmin(lev_distances);
 
-		return guild_obj.channels.map((channel) => channel)[closest_match_idx];
+		return guild_obj.channels.cache.map((channel) => channel)[closest_match_idx];
 	},
 
 	close_db: () =>
