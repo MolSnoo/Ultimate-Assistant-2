@@ -21,7 +21,7 @@ module.exports =
 			// const guild_members = await message.guild.fetchMembers();
 			var player_id = player_id_match[1];
 			// var player_obj = guild_members.members.find((member) => member.user.id == player_id).user;
-			var player_obj = await bot.fetchUser(player_id)
+			var player_obj = await bot.users.fetch(player_id)
 		}
 		else
 		{

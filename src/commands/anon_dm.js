@@ -40,7 +40,7 @@ module.exports =
 			// const guild_members = await message.guild.fetchMembers();
 
 			// var recipient_obj = guild_members.find((element) => element.id == recipient_player_id);
-			var recipient_obj = await bot.fetchUser(recipient_player_id);
+			var recipient_obj = await bot.users.fetch(recipient_player_id);
 
 			try
 			{
