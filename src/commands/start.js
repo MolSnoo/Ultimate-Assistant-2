@@ -45,7 +45,7 @@ module.exports =
 			try
 			{
 				console.log("Adding role");
-				player_obj.addRole(starting_channel_role_id).then(player_names.push(player_obj.user.username)).catch(console.error);
+				player_obj.roles.add(starting_channel_role_id).then(player_names.push(player_obj.user.username)).catch(console.error);
 			}
 			catch (e)
 			{

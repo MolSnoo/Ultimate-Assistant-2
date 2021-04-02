@@ -56,7 +56,7 @@ module.exports =
 
 		try
 		{
-			message_member.addRole(new_role_id).then().catch(console.error);
+			message_member.roels.add(new_role_id).then().catch(console.error);
 		}
 		catch
 		{
@@ -65,7 +65,7 @@ module.exports =
 		
 		try
 		{
-			message_member.removeRole(member_map_role.id).then().catch(console.error);
+			message_member.roles.remove(member_map_role.id).then().catch(console.error);
 		}
 		catch
 		{
