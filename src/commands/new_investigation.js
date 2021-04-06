@@ -61,37 +61,52 @@ module.exports =
 
 		// Get the description
 		const filter = (msg) => (msg.author.id == message.author.id && msg.channel.id == message.channel.id);
+		const options = {maxMatches: 1, time: 120000, errors: ['time']};
 
-		message.channel.send(`Enter description:`)
-			.then (() => 
-			{
-				message.channel.awaitMessages(filter, {maxMatches: 1, time: 120000, errors: ['time']})
-					.then (async collected => 
-					{
-						let response = collected.first().content;
+		const collector = message.channel.createMessageCollector(filter, options);
+
+		await message.channel.send("Enter description:");
+
+		collector.on('collect', msg => {
+			const response = msg.content;
+
+			utils.fn.add_investigation(message.guild.id, channel_id, item_names, response, is_public, is_stealable);
+
+			message.channel.send("Added investigation!");
+			
+			collector.stop();
+		});
+
+	// 	message.channel.send(`Enter description:`)
+	// 		.then (() => 
+	// 		{
+	// 			message.channel.awaitMessages(filter, {maxMatches: 1, time: 120000, errors: ['time']})
+	// 				.then (async collected => 
+	// 				{
+	// 					let response = collected.first().content;
 						
-						// Add to db
-						utils.fn.add_investigation(message.guild.id, channel_id, item_names, response, is_public, is_stealable);
+	// 					// Add to db
+	// 					utils.fn.add_investigation(message.guild.id, channel_id, item_names, response, is_public, is_stealable);
 
-						try
-						{
-							await message.channel.send("Added investigation!");
-						}
-						catch {}
+	// 					try
+	// 					{
+	// 						await message.channel.send("Added investigation!");
+	// 					}
+	// 					catch {}
 
-					})
-					.catch (async error =>
-					{
-						try
-						{
-							await message.channel.send(error);
-						}
-						catch
-						{
-							await message.channel.send(`Timed out! (120 s)`);
-						}
-					});
-			});
+	// 				})
+	// 				.catch (async error =>
+	// 				{
+	// 					try
+	// 					{
+	// 						await message.channel.send(error);
+	// 					}
+	// 					catch
+	// 					{
+	// 						await message.channel.send(`Timed out! (120 s)`);
+	// 					}
+	// 				});
+	// 		});
 
 	}
 }
