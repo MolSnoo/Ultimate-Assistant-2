@@ -88,8 +88,9 @@ module.exports =
 							await message.channel.send(`${char_name} not confirmed`);
 						}
 					})
-					.catch (async collected =>
+					.catch (async e =>
 					{
+						console.log(e);
 						await message.channel.send(`Timed out! (120 s)`);
 					});
 			});
