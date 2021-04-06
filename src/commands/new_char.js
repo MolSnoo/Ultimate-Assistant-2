@@ -53,29 +53,45 @@ module.exports =
 
 		// Collect response
 		const filter = (msg) => (msg.author.id == message.author.id && msg.channel.id == message.channel.id);
+		const options = {maxMatches: 1, time: 120000, errors: ['time']};
+		const collector = message.channel.createCollector(filter, options);
 
-		message.channel.send(`Confirm ${char_name}? (y/n)`)
-			.then (() => 
+		collector.on('collect', (msg) => {
+			const response = msg.content.toLowerCase();
+			if (response == 'y' || response == 'yes')
 			{
-				message.channel.awaitMessages(filter, {maxMatches: 1, time: 120000, errors: ['time']})
-					.then (collected => 
-					{
-						let response = collected.first().content.toLowerCase();
-						if (response == 'y' || response == 'yes')
-						{
-							utils.fn.add_char_entry(message.guild.id, player_id, char_name, char_nickname);
-							utils.fn.set_player_character(message.guild.id, player_id, char_nickname);
-							message.channel.send(`Added ${char_name} to ${message.guild}`);
-						}
-						else
-						{
-							message.channel.send(`${char_name} not confirmed`);
-						}
-					})
-					.catch (collected =>
-					{
-						message.channel.send(`Timed out! (120 s)`);
-					});
-			});
+				utils.fn.add_char_entry(message.guild.id, player_id, char_name, char_nickname);
+				utils.fn.set_player_character(message.guild.id, player_id, char_nickname);
+				await message.channel.send(`Added ${char_name} to ${message.guild}`);
+			}
+			else
+			{
+				await message.channel.send(`${char_name} not confirmed`);
+			}
+		});
+
+		// message.channel.send(`Confirm ${char_name}? (y/n)`)
+		// 	.then (() => 
+		// 	{
+		// 		message.channel.awaitMessages(filter, {maxMatches: 1, time: 120000, errors: ['time']})
+		// 			.then (collected => 
+		// 			{
+		// 				const response = collected.first().content.toLowerCase();
+		// 				if (response == 'y' || response == 'yes')
+		// 				{
+		// 					utils.fn.add_char_entry(message.guild.id, player_id, char_name, char_nickname);
+		// 					utils.fn.set_player_character(message.guild.id, player_id, char_nickname);
+		// 					await message.channel.send(`Added ${char_name} to ${message.guild}`);
+		// 				}
+		// 				else
+		// 				{
+		// 					await message.channel.send(`${char_name} not confirmed`);
+		// 				}
+		// 			})
+		// 			.catch (collected =>
+		// 			{
+		// 				await message.channel.send(`Timed out! (120 s)`);
+		// 			});
+		// 	});
 	}
 }
