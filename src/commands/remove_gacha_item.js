@@ -52,7 +52,7 @@ module.exports =
 						}
 						catch {}
 					})
-					.catch (collected =>
+					.catch (async collected =>
 					{
 						await message.channel.send(`Timed out! (120 s)`);
 					});
