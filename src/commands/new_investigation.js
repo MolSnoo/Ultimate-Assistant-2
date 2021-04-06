@@ -88,7 +88,7 @@ module.exports =
 						}
 						catch
 						{
-							message.channel.send(`Timed out! (120 s)`);
+							await message.channel.send(`Timed out! (120 s)`);
 						}
 					});
 			});

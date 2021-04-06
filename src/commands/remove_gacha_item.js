@@ -54,8 +54,7 @@ module.exports =
 					})
 					.catch (collected =>
 					{
-						console.log(collected);
-						message.channel.send(`Timed out! (120 s)`);
+						await message.channel.send(`Timed out! (120 s)`);
 					});
 			});
 
