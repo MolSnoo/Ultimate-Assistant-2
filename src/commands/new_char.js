@@ -52,9 +52,7 @@ module.exports =
 		await message.channel.send(`Name: ${char_name} \nNickname: ${char_nickname} \nPlayer: ${player_obj.username}`);
 
 		// Collect response
-		const filter = (msg) => {
-			msg.author.id == message.author.id && msg.channel.id == message.channel.id
-		};
+		const filter = (msg) => (msg.author.id == message.author.id && msg.channel.id == message.channel.id);
 		const options = {maxMatches: 1, time: 120000, errors: ['time']};
 		// const collector = message.channel.createCollector(filter, options);
 
