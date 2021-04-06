@@ -26,37 +26,60 @@ module.exports =
 
 		// Collect numerical input
 		const filter = (msg) => (msg.author.id == message.author.id && msg.channel.id == message.channel.id);
+		const options = {maxMatches: 1, time: 120000, errors: ['time']};
 
-		message.channel.send(`Enter a comma separated list of numbers: `)
-			.then (() => 
+		const collector = message.channel.createMessageCollector(filter, options);
+		
+		await message.channel.send(`Enter a comma separated list of numbers:`);
+
+		collector.on('collect', msg => {
+			const response = msg.content.toLowerCase();
+
+			// Parse response
+			let idxs_to_delete = response.match(/([0-9]*)/g)
+				.filter((entry) => !isNaN(parseInt(entry)) && parseInt(entry) <= items.length-1);
+
+			for (idx of idxs_to_delete)
 			{
-				message.channel.awaitMessages(filter, {maxMatches: 1, time: 120000, errors: ['time']})
-					.then (async collected => 
-					{
-						var response = collected.first().content.toLowerCase();
+				let i = parseInt(idx);
+				utils.fn.remove_gacha_entry(message.guild.id, items[i].ItemName);
+			}
 
-						// Parse response
-						let idxs_to_delete = response.match(/([0-9]*)/g)
-							.filter((entry) => !isNaN(parseInt(entry)) && parseInt(entry) <= items.length-1);
+			message.channel.send(`Removed item(s) ${idxs_to_delete.join(", ")}`);
 
-						for (idx of idxs_to_delete)
-						{
-							let i = parseInt(idx);
-							utils.fn.remove_gacha_entry(message.guild.id, items[i].ItemName);
-						}
+			collector.stop();
+		});
 
-						// Finish
-						try
-						{
-							await message.channel.send(`Removed item(s) ${idxs_to_delete.join(", ")}`);
-						}
-						catch {}
-					})
-					.catch (async collected =>
-					{
-						await message.channel.send(`Timed out! (120 s)`);
-					});
-			});
+		// message.channel.send(`Enter a comma separated list of numbers: `)
+		// 	.then (() => 
+		// 	{
+		// 		message.channel.awaitMessages(filter, {maxMatches: 1, time: 120000, errors: ['time']})
+		// 			.then (async collected => 
+		// 			{
+		// 				var response = collected.first().content.toLowerCase();
+
+		// 				// Parse response
+		// 				let idxs_to_delete = response.match(/([0-9]*)/g)
+		// 					.filter((entry) => !isNaN(parseInt(entry)) && parseInt(entry) <= items.length-1);
+
+		// 				for (idx of idxs_to_delete)
+		// 				{
+		// 					let i = parseInt(idx);
+		// 					utils.fn.remove_gacha_entry(message.guild.id, items[i].ItemName);
+		// 				}
+
+		// 				// Finish
+		// 				try
+		// 				{
+		// 					await message.channel.send(`Removed item(s) ${idxs_to_delete.join(", ")}`);
+		// 				}
+		// 				catch {}
+		// 			})
+		// 			.catch (async collected =>
+		// 			{
+		// 				await message.channel.send(`Timed out! (120 s)`);
+		// 			});
+		// 	});
 
 
 		// console.log(response);

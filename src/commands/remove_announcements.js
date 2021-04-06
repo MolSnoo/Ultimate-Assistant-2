@@ -22,36 +22,59 @@ module.exports =
 
 		// Collect numerical input
 		const filter = (msg) => (msg.author.id == message.author.id && msg.channel.id == message.channel.id);
+		const options = {maxMatches: 1, time: 120000, errors: ['time']};
 
-		message.channel.send(`Enter a comma separated list of numbers: `)
-			.then (() => 
+		const collector = message.channel.createMessageCollector(filter, options);
+
+		await message.channel.send("Enter a comma separated list of numbers:");
+
+		collector.on('collect', msg => {
+			const response = msg.content.toLowerCase();
+
+			// Parse response
+			let idxs_to_delete = response.match(/([0-9]*)/g)
+				.filter((entry) => !isNaN(parseInt(entry)) && parseInt(entry) <= announcements.length-1);
+
+			for (idx of idxs_to_delete)
 			{
-				message.channel.awaitMessages(filter, {maxMatches: 1, time: 120000, errors: ['time']})
-					.then (async collected => 
-					{
-						var response = collected.first().content.toLowerCase();
+				let i = parseInt(idx);
+				utils.fn.remove_announcement(message.guild.id, announcements[i].ChannelID, announcements[i].Message, announcements[i].Frequency, announcements[i].NextPosting);
+			}
 
-						// Parse response
-						let idxs_to_delete = response.match(/([0-9]*)/g)
-							.filter((entry) => !isNaN(parseInt(entry)) && parseInt(entry) <= announcements.length-1);
+			message.channel.send(`Removed announcement(s) ${idxs_to_delete.join(", ")}`);
+			
+			collector.stop();
+		});
 
-						for (idx of idxs_to_delete)
-						{
-							let i = parseInt(idx);
-							utils.fn.remove_announcement(message.guild.id, announcements[i].ChannelID, announcements[i].Message, announcements[i].Frequency, announcements[i].NextPosting);
-						}
+		// message.channel.send(`Enter a comma separated list of numbers: `)
+		// 	.then (() => 
+		// 	{
+		// 		message.channel.awaitMessages(filter, {maxMatches: 1, time: 120000, errors: ['time']})
+		// 			.then (async collected => 
+		// 			{
+		// 				var response = collected.first().content.toLowerCase();
 
-						// Finish
-						try
-						{
-							await message.channel.send(`Removed announcement(s) ${idxs_to_delete.join(", ")}`);
-						}
-						catch {}
-					})
-					.catch (async collected =>
-					{
-						await message.channel.send(`Timed out! (120 s)`);
-					});
-			});
+		// 				// Parse response
+		// 				let idxs_to_delete = response.match(/([0-9]*)/g)
+		// 					.filter((entry) => !isNaN(parseInt(entry)) && parseInt(entry) <= announcements.length-1);
+
+		// 				for (idx of idxs_to_delete)
+		// 				{
+		// 					let i = parseInt(idx);
+		// 					utils.fn.remove_announcement(message.guild.id, announcements[i].ChannelID, announcements[i].Message, announcements[i].Frequency, announcements[i].NextPosting);
+		// 				}
+
+		// 				// Finish
+		// 				try
+		// 				{
+		// 					await message.channel.send(`Removed announcement(s) ${idxs_to_delete.join(", ")}`);
+		// 				}
+		// 				catch {}
+		// 			})
+		// 			.catch (async collected =>
+		// 			{
+		// 				await message.channel.send(`Timed out! (120 s)`);
+		// 			});
+		// 	});
 	}
 }

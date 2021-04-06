@@ -33,6 +33,7 @@ module.exports =
 		}
 
 		let display = displays.fn.guild_investigations(guild_investigations, message.guild);
+		console.log("here");
 
 		for (embed of display.embeds)
 		{

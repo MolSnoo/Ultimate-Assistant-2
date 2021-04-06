@@ -26,39 +26,63 @@ module.exports =
 
 		// Collect numerical input
 		const filter = (msg) => (msg.author.id == message.author.id && msg.channel.id == message.channel.id);
+		const options = {maxMatches: 1, time: 120000, errors: ['time']};
 
-		message.channel.send(`Enter a comma separated list of numbers: `)
-			.then (() => 
+		const collector = message.channel.createMessageCollector(filter, options);
+
+		await message.channel.send("Enter a comma separated list of numbers:");
+
+		collector.on('collect', msg => {
+			const response = msg.content.toLowerCase();
+
+			// Parse response
+			let idxs_to_delete = response.match(/([0-9]*)/g)
+				.filter((entry) => !isNaN(parseInt(entry)) && parseInt(entry) <= investigations.length-1);
+			
+			for (idx of idxs_to_delete)
 			{
-				message.channel.awaitMessages(filter, {maxMatches: 1, time: 120000, errors: ['time']})
-					.then (async collected => 
-					{
-						var response = collected.first().content.toLowerCase();
+				let i = parseInt(idx);
 
-						// Parse response
-						let idxs_to_delete = response.match(/([0-9]*)/g)
-							.filter((entry) => !isNaN(parseInt(entry)) && parseInt(entry) <= investigations.length-1);
+				utils.fn.remove_investigation(ordered_list[i].ChannelID, ordered_list[i].ItemNames[0]);
+			}
+
+			message.channel.send(`Removed investigation(s) ${idxs_to_delete.join(", ")}`);
+			
+			collector.stop();
+		});
+
+		// message.channel.send(`Enter a comma separated list of numbers: `)
+		// 	.then (() => 
+		// 	{
+		// 		message.channel.awaitMessages(filter, {maxMatches: 1, time: 120000, errors: ['time']})
+		// 			.then (async collected => 
+		// 			{
+		// 				var response = collected.first().content.toLowerCase();
+
+		// 				// Parse response
+		// 				let idxs_to_delete = response.match(/([0-9]*)/g)
+		// 					.filter((entry) => !isNaN(parseInt(entry)) && parseInt(entry) <= investigations.length-1);
 						
-						for (idx of idxs_to_delete)
-						{
-							let i = parseInt(idx);
+		// 				for (idx of idxs_to_delete)
+		// 				{
+		// 					let i = parseInt(idx);
 
-							utils.fn.remove_investigation(ordered_list[i].ChannelID, ordered_list[i].ItemNames[0]);
-						}
+		// 					utils.fn.remove_investigation(ordered_list[i].ChannelID, ordered_list[i].ItemNames[0]);
+		// 				}
 
-						// Finish
-						try
-						{
-							await message.channel.send(`Removed investigation(s) ${idxs_to_delete.join(", ")}`);
-						}
-						catch {}
-					})
-					.catch (collected =>
-					{
-						console.log(collected);
-						message.channel.send(`Timed out! (120 s)`);
-					});
-			});
+		// 				// Finish
+		// 				try
+		// 				{
+		// 					await message.channel.send(`Removed investigation(s) ${idxs_to_delete.join(", ")}`);
+		// 				}
+		// 				catch {}
+		// 			})
+		// 			.catch (collected =>
+		// 			{
+		// 				console.log(collected);
+		// 				message.channel.send(`Timed out! (120 s)`);
+		// 			});
+		// 	});
 
 
 		// console.log(response);
