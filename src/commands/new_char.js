@@ -56,7 +56,7 @@ module.exports =
 		const options = {maxMatches: 1, time: 120000, errors: ['time']};
 		const collector = message.channel.createCollector(filter, options);
 
-		collector.on('collect', (msg) => {
+		collector.on('collect', async (msg) => {
 			const response = msg.content.toLowerCase();
 			if (response == 'y' || response == 'yes')
 			{
