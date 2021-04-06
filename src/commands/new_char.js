@@ -76,6 +76,7 @@ module.exports =
 				message.channel.awaitMessages(filter, options)
 					.then (async collected => 
 					{
+						console.log(collected);
 						const response = collected.first().content.toLowerCase();
 						if (response == 'y' || response == 'yes')
 						{
