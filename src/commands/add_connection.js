@@ -97,7 +97,10 @@ module.exports =
 				// console.log(channel_obj)
 				try
 				{
-					channel_obj.overwritePermissions(new_role, {VIEW_CHANNEL: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true}).then().catch(console.error);
+					await channel_obj.overwritePermissions([{
+						id: new_role.id, 
+						allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY']
+					}]);
 				}
 				catch
 				{
