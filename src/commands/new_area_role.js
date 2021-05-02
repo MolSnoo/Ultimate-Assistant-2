@@ -48,7 +48,7 @@ module.exports =
 		try
 		{
 			// var new_role = await message.guild.createRole({name: channel_name,});
-			await message.guild.roles.create({
+			var new_role = await message.guild.roles.create({
 				data: {name: channel_name}
 			});
 					
