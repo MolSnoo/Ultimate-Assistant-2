@@ -47,7 +47,11 @@ module.exports =
 		// Attempt to create a new role
 		try
 		{
-			var new_role = await message.guild.createRole({name: channel_name,});
+			// var new_role = await message.guild.createRole({name: channel_name,});
+			await message.guild.roles.create({
+				data: {name: channel_name}
+			});
+					
 			await message.channel.send(`Created role for <#${channel_id}>`);
 
 		}
