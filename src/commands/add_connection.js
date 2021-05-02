@@ -76,7 +76,7 @@ module.exports =
 					let outgoing_channel_name = message.guild.channels.cache.find((channel) => channel.id == outgoing_id).name;
 					
 					// var new_role = await message.guild.createRole({name: outgoing_channel_name,});
-					await message.guild.roles.create({
+					var new_role = await message.guild.roles.create({
 						data: {name: outgoing_channel_name}
 					});
 					await message.channel.send(`Created role for <#${outgoing_id}>`);
