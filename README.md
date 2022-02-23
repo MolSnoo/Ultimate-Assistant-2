@@ -8,10 +8,6 @@ The developer also welcomes your feedback and suggestions, which can be given se
 
 UA will DM the developer with the message. User ID is provided in order to screen for misuse/harassment.
 
-To invite the bot to your server:
-
-https://discordapp.com/oauth2/authorize?client_id=517165856933937153&scope=bot
-
 Links to this page, the development server, and the invite can be obtained using
 
 `!info`
